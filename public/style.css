@@ -1,0 +1,436 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Body Styles */
+body {
+    background: url('images/clear-sky-day.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+    transition: background 0.3s ease;
+}
+
+/* Header Styles */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#logo-video {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+.website-title {
+    font-size: 40px;
+    font-weight: 700;
+    color: #FFF;
+    text-shadow: 3px 3px 6px #000;
+}
+
+/* Authentication Section */
+.auth-container {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    max-width: 800px;
+    margin-top: 20px;
+}
+
+.auth-form {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+    width: 45%;
+}
+
+.auth-form h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #ff9f00;
+}
+
+.auth-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.7);
+    transition: all 0.3s ease;
+}
+
+.auth-form input:focus {
+    background-color: rgba(255, 255, 255, 1);
+    outline: none;
+}
+
+.auth-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #ff9f00;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.auth-form button:hover {
+    background-color: #f78f00;
+}
+
+/* Search Bar Styles */
+.search-bar {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.search-bar input {
+    width: 300px;
+    padding: 10px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.7);
+    transition: all 0.3s ease;
+}
+
+.search-bar input:focus {
+    background-color: rgba(255, 255, 255, 1);
+    outline: none;
+}
+
+.search-bar button {
+    padding: 10px 20px;
+    background-color: #ff9f00;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-bar button:hover {
+    background-color: #f78f00;
+}
+
+#search-video {
+    position: absolute;
+    right: -120px;
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+}
+
+/* Weather Info Section */
+.weather-container {
+    margin-top: 50px;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    text-align: left;
+}
+
+.weather-info {
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#weather-temperature {
+    font-size: 40px;
+}
+
+.weather-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.weather-stats div {
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.weather-stats strong {
+    font-weight: bold;
+}
+
+/* Forecast Container */
+.forecast-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    margin-top: 50px;
+    width: 80%;
+    max-width: 800px;
+}
+
+.forecast-container div {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.forecast-container div img {
+    width: 50px;
+    height: 50px;
+}
+
+/* Save City Section */
+.save-city-container {
+    margin-top: 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+}
+
+.save-city-container h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #ff9f00;
+}
+
+.save-city-container form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.save-city-container input {
+    width: 70%;
+    padding: 10px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.7);
+    transition: all 0.3s ease;
+}
+
+.save-city-container input:focus {
+    background-color: rgba(255, 255, 255, 1);
+    outline: none;
+}
+
+.save-city-container button {
+    padding: 10px;
+    background-color: #ff9f00;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.save-city-container button:hover {
+    background-color: #f78f00;
+}
+
+/* Weather Alerts Section */
+#weather-alerts {
+    margin-top: 20px;
+    background-color: rgba(255, 0, 0, 0.7); /* Red background for alerts */
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#weather-alerts .alert {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+/* Video Section */
+#weather-video {
+    margin-top: 30px;
+    width: 100%;
+    height: 400px;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Loading Spinner */
+#loading {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spinner {
+    border: 8px solid rgba(255, 255, 255, 0.1);
+    border-top: 8px solid #fff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Footer Styles */
+footer {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #fff;
+    font-weight: normal;
+    text-align: center;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#contact-video {
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* Chat Container Styles */
+#chat-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#chatbox {
+    height: 200px;
+    overflow-y: auto;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+
+.message {
+    margin: 5px 0;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.user {
+    background: lightblue;
+    text-align: right;
+}
+
+.bot {
+    background: lightgray;
+    text-align: left;
+}
+
+#chat-input {
+    width: 80%;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+}
+
+#send-btn {
+    width: 15%;
+    padding: 5px;
+    background: blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .forecast-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .weather-stats {
+        grid-template-columns: 1fr;
+    }
+
+    #search-video {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .search-bar input {
+        width: 250px;
+    }
+
+    .search-bar button {
+        font-size: 14px;
+    }
+
+    #weather-temperature {
+        font-size: 30px;
+    }
+
+    .forecast-container {
+        grid-template-columns: 1fr;
+    }
+
+    #weather-video {
+        height: 300px;
+    }
+}

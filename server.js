@@ -1,18 +1,18 @@
-const express = require('express');
-const connectDB = require('./db'); // ✅ Import connectDB
-const passport = require('./config/passport');
-const session = require('express-session');
-const MongoStore = require('connect-mongo');
-const dotenv = require('dotenv');
-const cors = require('cors');
-const methodOverride = require('method-override');
-const path = require('path');
-const axios = require('axios');
-const User = require('./models/User');
-const City = require('./models/City');
-const Chat = require('./models/Chat');
-const sgMail = require('@sendgrid/mail');
-const Twilio = require('twilio');
+import express from 'express';
+import connectDB from './db.js';
+import passport from './config/passport.js';
+import session from 'express-session';
+import MongoStore from 'connect-mongo';
+import dotenv from 'dotenv';
+import cors from 'cors';
+import methodOverride from 'method-override';
+import path from 'path';
+import axios from 'axios';
+import User from './models/User.js';
+import City from './models/City.js';
+import Chat from './models/Chat.js';
+import sgMail from '@sendgrid/mail';
+import Twilio from 'twilio';
 
 dotenv.config(); // Load environment variable
 
@@ -21,13 +21,11 @@ const app = express();
 // ✅ Connect to Database
 connectDB();
 
-
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 app.use(cors());
 app.use(methodOverride('_method'));
 app.use(express.static('public'));
-
 
 app.use(session({
     secret: process.env.SESSION_SECRET || 'super-secret-key',
@@ -40,13 +38,8 @@ app.use(session({
     cookie: { secure: false } // Set to true if using HTTPS
 }));
 
-
 app.use(passport.initialize());
 app.use(passport.session());
-
-
-
-
 
 app.post('/login', passport.authenticate('local'), (req, res) => {
     res.json({ message: "✅ Login successful!" });
@@ -62,9 +55,6 @@ app.get('/api/weather', async (req, res) => {
         }
 
         const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.OPENWEATHER_API_KEY}&units=metric`;
-      
-        app.get('/api/weather', async (req, res) => {  // ✅ Now inside an async function
-    try {
         const response = await axios.get(url);
         res.json(response.data);
     } catch (error) {
@@ -72,17 +62,6 @@ app.get('/api/weather', async (req, res) => {
         res.status(500).json({ error: "Failed to fetch weather data" });
     }
 });
-
-
-        res.json(response.data);
-    } catch (error) {
-        console.error("❌ Weather API Error:", error);
-        res.status(500).json({ error: "Failed to fetch weather data" });
-    }
-});
-
-
-
 
 const PORT = process.env.PORT || 3000;  // ✅ Keep only one declaration
 
@@ -109,12 +88,9 @@ setInterval(() => {
     console.log("✅ Keeping the server alive...");
 }, 1000 * 60 * 5); // Runs every 5 minutes
 
-
-
 // API route to send API key to frontend
 app.get("/api/getApiKey", (req, res) => {
    res.json({ apiKey: process.env.OPENWEATHER_API_KEY || "" });
-
 });
 
 // Twilio configuration
@@ -127,6 +103,7 @@ const mongoURI = process.env.MONGO_URI;
 if (!mongoURI) {
     console.warn("⚠️ Warning: MONGO_URI is missing. Using local fallback.");
 }
+
 // Middleware
 app.use(express.json({ limit: "10mb" })); // Increase limit if needed
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
@@ -198,67 +175,6 @@ app.post('/cities', async (req, res) => {
         res.status(500).json({ error: "Error saving city" });
     }
 });
-app.get('/api/weather', async (req, res) => {
-    try {
-        const city = req.query.city;
-        if (!city) return res.status(400).json({ error: "City is required" });
-
-        if (!process.env.OPENWEATHER_API_KEY) {
-            return res.status(500).json({ error: "API key is missing" });
-        }
-
-        const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.OPENWEATHER_API_KEY}&units=metric`;
-        const response = await axios.get(url);  // ✅ Now correctly inside async function
-
-        res.json(response.data);
-    } catch (error) {
-        console.error("❌ Weather API Error:", error);
-        res.status(500).json({ error: "Failed to fetch weather data" });
-    }
-});
-
-
-// Global Error Handling Middleware
-app.use((err, req, res, next) => {
-    console.error("🚨 Uncaught Error:", err);
-    res.status(500).json({ error: "Something went wrong" });
-});
-
-
-
-// Handle "EADDRINUSE" error
-server.on('error', (err) => {
-    if (err.code === 'EADDRINUSE') {
-        console.error(`❌ PORT ${PORT} is already in use. Trying a different port...`);
-        setTimeout(() => {
-            server.listen(0, () => { // 0 means pick a random available port
-                console.log(`🚀 Server restarted on available port: ${server.address().port}`);
-            });
-        }, 1000);
-    } else {
-        console.error('❌ Server error:', err);
-    }
-});
-
-
-app.post('/cities', async (req, res) => {
-    try {
-        console.log("🔍 Checking User Session:", req.user); // Debugging
-
-        if (!req.isAuthenticated()) {
-            console.warn("⚠️ Unauthorized Request: User not logged in");
-            return res.status(401).send('Not authenticated');
-        }
-
-        const { city } = req.body;
-        const newCity = new City({ name: city, userId: req.user.id });
-        await newCity.save();
-        res.status(201).send('City saved');
-    } catch (error) {
-        console.error('❌ Error saving city:', error);
-        res.status(500).send('Error saving city');
-    }
-});
 
 // Secure Route: Fetch User's Saved Cities
 app.get('/cities', async (req, res) => {
@@ -275,7 +191,7 @@ app.get('/cities', async (req, res) => {
     }
 });
 
-const OpenAI = require("openai");
+import OpenAI from "openai";
 
 if (!process.env.OPENAI_API_KEY || !process.env.OPENAI_API_KEY.startsWith("sk-")) {
   console.error("❌ ERROR: Invalid OpenAI API key! Check your .env file.");
@@ -288,8 +204,6 @@ const openai = new OpenAI({
 
 app.use(express.json());
 app.use(cors());
-
-
 
 app.post("/chat", async (req, res) => {  // ✅ Ensure function is async
   try {
